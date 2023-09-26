@@ -1,5 +1,7 @@
 # Next.js 13 + Tailwind CSS Starter (Docker Ready)
 
+By Connor Doman
+
 ## Info
 
 | Environment | Port     |
