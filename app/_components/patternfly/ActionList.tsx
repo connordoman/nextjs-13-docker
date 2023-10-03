@@ -97,3 +97,76 @@ export const ActionListSingleGroup: React.FunctionComponent = () => {
         </React.Fragment>
     );
 };
+
+interface ButtonAction {
+    action: string;
+    linkTo?: string;
+    onClick?: () => void;
+}
+
+interface ActionButtonsProps {
+    actions: ButtonAction[];
+    withKebab?: boolean;
+    kebabActions?: ButtonAction[];
+}
+
+export const ActionButtons = ({ actions, withKebab, kebabActions }: ActionButtonsProps) => {
+    const [isOpen, setIsOpen] = React.useState(false);
+
+    const handleToggle = () => {
+        setIsOpen(!isOpen);
+    };
+
+    const onSelect = (event: React.MouseEvent<Element, MouseEvent> | undefined) => {
+        event?.stopPropagation();
+        setIsOpen(!isOpen);
+    };
+
+    const buttons = actions.map((buttonAction, index) => {
+        return (
+            <ActionListItem key={index}>
+                <Button onClick={buttonAction.onClick} variant={index > 0 ? "secondary" : "primary"}>
+                    {buttonAction.action}
+                </Button>
+            </ActionListItem>
+        );
+    });
+
+    const kebabMenu = (
+        <>
+            {withKebab && kebabActions ? (
+                <Dropdown
+                    onSelect={onSelect}
+                    toggle={(toggleRef: React.Ref<MenuToggleElement>) => (
+                        <MenuToggle
+                            ref={toggleRef}
+                            onClick={handleToggle}
+                            variant="plain"
+                            isExpanded={isOpen}
+                            aria-label="Action list single group kebab">
+                            <EllipsisVIcon />
+                        </MenuToggle>
+                    )}
+                    isOpen={isOpen}
+                    onOpenChange={(isOpen: boolean) => setIsOpen(isOpen)}>
+                    {kebabActions
+                        ? kebabActions.map((action, index) => {
+                              return (
+                                  <DropdownItem to={action.linkTo} key={index}>
+                                      {action.action}
+                                  </DropdownItem>
+                              );
+                          })
+                        : null}
+                </Dropdown>
+            ) : null}
+        </>
+    );
+
+    return (
+        <ActionList>
+            {buttons}
+            {withKebab && <ActionListItem>{kebabMenu}</ActionListItem>}
+        </ActionList>
+    );
+};
