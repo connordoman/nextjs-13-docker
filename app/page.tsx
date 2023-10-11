@@ -4,7 +4,6 @@ import Masthead from "./_components/Masthead";
 import HorizontalRule from "./_components/HorizontalRule";
 import Code from "./_components/Code";
 import { NumberInput, PasswordInput, TextInput } from "./_components/Input";
-import { useState } from "react";
 import { Button } from "./_components/Button";
 import { Textarea } from "./_components/Textarea";
 
