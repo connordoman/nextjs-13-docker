@@ -4,9 +4,6 @@ const nextConfig = {
         // Important: return the modified config
         return config;
     },
-    experimental: {
-        appDir: true,
-    },
 };
 
 module.exports = nextConfig;
