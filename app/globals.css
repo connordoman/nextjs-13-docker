@@ -1,3 +1,4 @@
+@import url("node_modules/@patternfly/react-core/dist/styles/base.css");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -22,7 +23,7 @@
 
 body {
     min-height: 100vh;
-    /*color: rgb(var(--foreground-rgb));*/
+    color: rgb(var(--foreground-rgb));
     /*background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));*/
     background-color: rgb(var(--background-start-rgb));
 }
