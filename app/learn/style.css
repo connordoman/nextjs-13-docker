@@ -1,0 +1,97 @@
+/*
+ * Created on Sat Oct 21 2023
+ * Author: Connor Doman
+ */
+
+* {
+    @apply box-border;
+    @apply m-0;
+    @apply p-0;
+}
+
+body {
+    @apply bg-zinc-100;
+    @apply text-zinc-800;
+    @apply font-sans;
+    @apply p-4;
+}
+
+h1 {
+    @apply text-4xl;
+    @apply font-bold;
+    @apply text-zinc-800;
+    @apply underline;
+    @apply underline-offset-1;
+    @apply my-4;
+}
+
+h2 {
+    @apply text-3xl;
+    @apply font-bold;
+    @apply text-zinc-800;
+    @apply underline-offset-1;
+    @apply my-4;
+}
+
+h3 {
+    @apply text-2xl;
+    @apply font-bold;
+    @apply text-zinc-800;
+}
+
+h4 {
+    @apply text-xl;
+    @apply font-bold;
+    @apply text-zinc-800;
+}
+
+h5 {
+    @apply text-lg;
+    @apply font-bold;
+    @apply text-zinc-800;
+}
+
+h6 {
+    @apply text-base;
+    @apply font-bold;
+    @apply text-zinc-800;
+}
+
+p {
+    @apply leading-6;
+    @apply my-4;
+}
+
+ul {
+    @apply list-disc;
+    @apply list-inside;
+    @apply my-4;
+}
+
+ol {
+    @apply list-decimal;
+    @apply list-inside;
+    @apply my-4;
+    @apply pl-4;
+}
+
+code {
+    @apply font-mono;
+}
+
+code:not(pre code) {
+    @apply text-zinc-800;
+    @apply bg-zinc-200;
+    @apply px-1;
+    @apply py-[0.125rem];
+    @apply mx-[0.125rem];
+    @apply rounded-md;
+    @apply font-semibold;
+}
+
+.pre-code {
+    @apply p-4;
+    @apply mx-4;
+    @apply my-4;
+    @apply rounded-md;
+}

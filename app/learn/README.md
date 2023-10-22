@@ -17,7 +17,7 @@ Go to `src/app/components/` (in a `/src` project) or `app/_components/` (in this
 
 Add the following to `Form.tsx`:
 
-```tsx
+```typescript
 export const Form = () => {
     return <form></form>;
 };
@@ -29,7 +29,7 @@ Now, realistically, this form component could be informed about all the elements
 
 Inside the same file, add the following code:
 
-```tsx
+```jsx
 const TextInput = () => {
     return <input type="text" />;
 };
@@ -47,19 +47,24 @@ Now, we will need to add state.
 
 Here we will use the React `useState()` hook. While React is imported statically by Next.js, we still need to import the `useState()` hook from React. Add the following to the top of `Form.tsx`:
 
-```tsx
+```jsx
+"use client";
 import { useState } from "react";
 
 // TextInput, Form...
 ```
 
+> Notice that our file starts with `"use client"`. This is a special comment that tells Next.js to only include this file in the client bundle. This is important because `useState()` is not available on the server during a server side render.
+>
+> Any components (and therefore pages) that you create in Next.js that include `useState()` will need to have this comment at the top of the file. However, pages that contain components that use `useState()` do not need this comment.
+
 Now, we can add state to the `TextInput` component. Add the following to the `TextInput` component:
 
-```tsx
+```jsx
 import { useState } from "react";
 
 const TextInput = () => {
-    const [text, setText] = useState<string>("");
+    const [text, setText] = useState < string > "";
 
     return <input type="text" value={text} />;
 };
@@ -81,11 +86,11 @@ In order to do this, we will need to know when the input is updated. HTML inputs
 
 Check this out:
 
-```tsx
+```jsx
 import { useState } from "react";
 
 const TextInput = () => {
-    const [text, setText] = useState<string>("");
+    const [text, setText] = useState < string > "";
 
     return <input type="text" value={text} onChange={() => null} />;
 };
@@ -97,11 +102,11 @@ Because we added the `onChange` prop to the input element, a function will now b
 
 To do this, our `TextInput` needs to have a function that does something other than return `null`.
 
-```tsx
+```jsx
 import { useState } from "react";
 
 const TextInput = () => {
-    const [text, setText] = useState<string>("");
+    const [text, setText] = useState < string > "";
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setText(event.target.value);
@@ -139,7 +144,7 @@ So for our `TextInput`, `onChange` is actually a prop of `input`. This prop actu
 
 This means when we add our `TextInput` component to our Form, it will look like this:
 
-```tsx
+```jsx
 <TextInput onChange={handleChange} />
 ```
 
@@ -157,7 +162,7 @@ However, in TypeScript, we need to be more specific. We will have to declare an 
 
 > Notice we can make the `onChange` function take any argument. So instead of a change event, we can just give it a string directly.
 
-```tsx
+```jsx
 interface TextInputProps {
     onChange: (value: string) => void;
 }
@@ -171,7 +176,7 @@ Now we know exactly what to expect from our custom `onChange` prop and other pro
 
 Now let's modify our `TextInput` component to use this prop:
 
-```tsx
+```jsx
 import { useState } from "react";
 
 interface TextInputProps {
@@ -179,7 +184,7 @@ interface TextInputProps {
 }
 
 const TextInput = ({ onChange }: TextInputProps) => {
-    const [text, setText] = useState<string>("");
+    const [text, setText] = useState < string > "";
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value: string = event.target.value;
@@ -199,9 +204,9 @@ So imagine a function inside `Form` that works just like `handleChange` in our `
 
 Here's what `Form` looks like now:
 
-```tsx
+```jsx
 export const Form = () => {
-    const [text, setText] = useState<string>("");
+    const [text, setText] = useState < string > "";
 
     const handleChange = (value: string) => {
         setText(value);
@@ -225,9 +230,9 @@ Now, when we change the text in the `TextInput`, the `handleChange` function wil
 
 Now, let's capture the `onSubmit` event of the form and display the value of the text input when the form is submitted.
 
-```tsx
+```jsx
 export const Form = () => {
-    const [text, setText] = useState<string>("");
+    const [text, setText] = useState < string > "";
 
     const handleChange = (value: string) => {
         setText(value);
@@ -292,7 +297,7 @@ If this was a stylesheet that didn't contain `.module.css`, then we would use it
 
 In `Form.tsx`, add the following to the top of the file:
 
-```tsx
+```jsx
 import styles from `./Form.module.css`;
 ```
 
@@ -302,7 +307,7 @@ This will import the styles from `Form.module.css` and store them in the `styles
 
 Now, we can add the styles to our component. Add the following to `Form.tsx`:
 
-```tsx
+```jsx
 const TextInput = ({ onChange }) => {
     /* handlers ... */
 
@@ -310,7 +315,7 @@ const TextInput = ({ onChange }) => {
 };
 
 export const Form = () => {
-    const [text, setText] = useState<string>("");
+    const [text, setText] = useState < string > "";
 
     /* handlers... */
 

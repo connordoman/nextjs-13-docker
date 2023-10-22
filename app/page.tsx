@@ -6,12 +6,18 @@ import Code from "./_components/Code";
 import { NumberInput, PasswordInput, TextInput } from "./_components/Input";
 import { Button } from "./_components/Button";
 import { Textarea } from "./_components/Textarea";
+import Link from "next/link";
 
 export default function Home() {
     return (
-        <main className="flex flex-col gap-4 w-11/12 border-l border-r border-white mx-auto min-h-screen bg-white">
+        <main className="flex flex-col gap-4 w-11/12 border-l border-r border-white mx-auto min-h-screen bg-white text-zinc-700">
             <Masthead>
                 <Heading level={4}>Template Site Name</Heading>
+                <div className="flex flex-row gap-4">
+                    <Link href="/learn" className="underline underline-offset-2">
+                        <Heading level={4}>Learn Interactive Components</Heading>
+                    </Link>
+                </div>
             </Masthead>
             <div className="px-8 py-4">
                 <Heading level={1}>Hello!</Heading>
